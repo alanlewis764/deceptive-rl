@@ -11,4 +11,4 @@ https://github.com/openai/spinningup
 ## Running
 
 ## Notice
-We are still currently in the process of cleaning up some of the code and merging in changes from private repositories for final publication. If anything appears to be strange, please let us know.
+I am still currently in the process of cleaning up some of the code and merging in changes from private repositories for publication. If anything appears to be strange, please let me know.
