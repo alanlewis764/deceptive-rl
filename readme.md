@@ -1,32 +1,12 @@
-**Status:** Maintenance (expect bug fixes and minor updates)
+# DeceptiveRL
+This code accompanies our paper - Deceptive Reinforcement Learning:A Policy-Based Approach for High-Dimensional Action-Spaces. The paper investigates a policy-based approach to deceptive reinforcement learning for privacy preservation in high-dimensional action-spaces. In reinforcement learning, the reward function defines the agent's objective. In adversarial scenarios, an agent may want to both maximise rewards and keep it's reward function private from observers. Recent approaches use the concept of entropy to select actions which are ambiguous over a set of possible reward functions. Despite promising results, they are inefficient to train, have poor state-space exploration properties, and are inapplicable in high-dimensional action-spaces. To resolve these issues, we combine entropy-based deception with an online actor-critic learning framework. We evaluate our model in discrete and continuous action-space, path-planning environments. Our model is more deceptive than an honest agent in both domains, extending entropy-based deception to high-dimensional action-spaces. The online learning framework leads to targeted exploration of the state-space. This improves the deceptive policy and reduces the number of environment interactions required to train the agent.
 
-Welcome to Spinning Up in Deep RL! 
-==================================
+## References
+We used openAI's spinningup as the starting point for our subagent model. See the code-base here:
 
-This is an educational resource produced by OpenAI that makes it easier to learn about deep reinforcement learning (deep RL).
+https://github.com/openai/spinningup
 
-For the unfamiliar: [reinforcement learning](https://en.wikipedia.org/wiki/Reinforcement_learning) (RL) is a machine learning approach for teaching agents how to solve tasks by trial and error. Deep RL refers to the combination of RL with [deep learning](http://ufldl.stanford.edu/tutorial/).
+## Running
 
-This module contains a variety of helpful resources, including:
-
-- a short [introduction](https://spinningup.openai.com/en/latest/spinningup/rl_intro.html) to RL terminology, kinds of algorithms, and basic theory,
-- an [essay](https://spinningup.openai.com/en/latest/spinningup/spinningup.html) about how to grow into an RL research role,
-- a [curated list](https://spinningup.openai.com/en/latest/spinningup/keypapers.html) of important papers organized by topic,
-- a well-documented [code repo](https://github.com/openai/spinningup) of short, standalone implementations of key algorithms,
-- and a few [exercises](https://spinningup.openai.com/en/latest/spinningup/exercises.html) to serve as warm-ups.
-
-Get started at [spinningup.openai.com](https://spinningup.openai.com)!
-
-
-Citing Spinning Up
-------------------
-
-If you reference or use Spinning Up in your research, please cite:
-
-```
-@article{SpinningUp2018,
-    author = {Achiam, Joshua},
-    title = {{Spinning Up in Deep Reinforcement Learning}},
-    year = {2018}
-}
-```
+## Notice
+We are still currently in the process of cleaning up some of the code and merging in changes from private repositories for final publication. If anything appears to be strange, please let us know.
