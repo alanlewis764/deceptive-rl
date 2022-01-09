@@ -1,9 +1,9 @@
 import json
 import os
-import pandas as pd
 import pathlib
 from collections import Counter
-from spinup.algos.pytorch.sac.ambiguity_types import AmbiguityTypes
+
+from ambiguity.ambiguity_types import AmbiguityTypes
 
 
 def get_interval_accumulated_deceptiveness_json_path(agent_type, discrete):

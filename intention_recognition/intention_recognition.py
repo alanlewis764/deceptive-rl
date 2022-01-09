@@ -3,15 +3,14 @@ from collections import defaultdict
 
 # numpy and scipy stufff
 import numpy as np
-import scipy.stats
-from scipy.stats import entropy
-from numpy.linalg import norm
 import pyvisgraph as vg
+import scipy.stats
+from numpy.linalg import norm
 
 # local stuff
-from spinup.algos.pytorch.sac.q_table_agent import QAgent
-from spinup.algos.pytorch.sac.candidate import QLearningCandidate, Observation
 from gym_minigrid.env_reader import read_map_as_visibility_graph
+from subagent.algos.sac.candidate import QLearningCandidate, Observation
+from subagent.algos.sac.q_table_agent import QAgent
 
 
 class IntentionRecognitionBase(ABC):

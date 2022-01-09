@@ -6,16 +6,12 @@ import torch
 from collections import defaultdict
 from gym_minigrid.env_reader import read_map, read_grid_size, get_all_model_names, read_start, read_goals, \
     get_all_models
-from spinup.algos.pytorch.sac.sac_agent import SacFactory, SacBaseAgent
-from spinup.algos.pytorch.sac.ambiguity import OnlineACAmbiguityAgent, AmbiguityFactory
-from spinup.algos.pytorch.sac.intention_recognition import IntentionRecognitionFactory
-from spinup.algos.pytorch.sac.ambiguity_types import AmbiguityTypes
-from spinup.algos.pytorch.sac.data_parsing import convert_to_time_density, append_results_to_json, \
+from intention_recognition.intention_recognition import IntentionRecognitionFactory
+from ambiguity.ambiguity import OnlineACAmbiguityAgent, AmbiguityFactory
+from ambiguity.ambiguity_types import AmbiguityTypes
+from subagent.algos.sac.sac_agent import SacFactory, SacBaseAgent
+from subagent.algos.sac.data_parsing import convert_to_time_density, append_results_to_json, \
     get_interval_path_cost_json_path, get_interval_accumulated_deceptiveness_json_path
-
-SEED = 42
-np.random.seed(SEED)
-torch.manual_seed(SEED)
 
 
 def run_online_ac_ambiguity(num_env, policy_type='softmax', discrete=True, adaptive_pruning_constant=-100,
@@ -264,6 +260,10 @@ def pretrained_agent_vs_training_cost(map_number, discrete=True, reward_type=Non
 
 
 def get_value_iteration_path(map_name, map_number, goal_name):
+    # TODO: move this over to the intention recognition file; create intention recognition from environment details
+    """
+    Used to instantiate the intention recognition agent
+    """
     return f'/Users/alanlewis/PycharmProjects/DeceptiveReinforcementLearning/model_storage/value_iteration/{map_name}{map_number}-{goal_name}.npy'
 
 
@@ -319,6 +319,7 @@ if __name__ == "__main__":
     parser.add_argument('--agent_type', type=str, default='hyperparam')
     parser.add_argument('--reward_type', type=str, default='path_cost')
     parser.add_argument('--alpha', type=float, default=0.2)
+    parser.add_argument('--seed', type=int, default=42)
     args = parser.parse_args()
 
     map_num = args.map_num
@@ -328,6 +329,7 @@ if __name__ == "__main__":
     agent_type = args.agent_type
     reward_type = args.reward_type
     alpha = args.alpha
+    seed = args.seed
 
     print(f"map num = {map_num}")
     print(f"discrete = {discrete}")
@@ -336,6 +338,10 @@ if __name__ == "__main__":
     print(f"agent_type = {agent_type}")
     print(f"reward_type = {reward_type}")
     print(f"alpha = {alpha}")
+    print(f"seed = {seed}")
+
+    np.random.seed(seed)
+    torch.manual_seed(seed)
 
     if agent_type == 'interval_sac':
         pretrained_agent_vs_training_cost(map_number=map_num, discrete=discrete, reward_type=reward_type,

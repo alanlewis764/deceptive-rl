@@ -13,8 +13,8 @@ import tensorflow as tf
 import torch
 import os.path as osp, time, atexit, os
 import warnings
-from spinup.utils.mpi_tools import proc_id, mpi_statistics_scalar
-from spinup.utils.serialization_utils import convert_json
+from subagent.utils.mpi_tools import proc_id, mpi_statistics_scalar
+from subagent.utils.serialization_utils import convert_json
 
 color2num = dict(
     gray=30,

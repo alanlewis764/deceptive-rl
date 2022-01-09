@@ -1,5 +1,6 @@
 import json
 
+
 def convert_json(obj):
     """ Convert obj to a version which can be serialized with JSON. """
     if is_json_serializable(obj):
@@ -24,6 +25,7 @@ def convert_json(obj):
             return {str(obj): obj_dict}
 
         return str(obj)
+
 
 def is_json_serializable(v):
     try:
