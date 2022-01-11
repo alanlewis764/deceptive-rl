@@ -20,10 +20,12 @@ pip install -r requirements.txt
 
 ## Running the agent
 We have added some agents that have already been trained which you can run with the following commands:
-- online actor-critic ambiguity: ```python run.py --agent 'online' --map_num 1 --action_space 'discrete'```
-- pre-trained actor-critic ambiguity: ```python run.py --agent 'pre-trained' --map_num 1 --action_space 'discrete'```
-- q-ambiguity: ```python run.py --agent 'q' map_num 1 --action_space 'discrete'```
-- honest: python run.py --agent 'honest' map_num 1 --action_space 'discrete'
+Agent       | Command
+-----------:|:------------------------------------------------:
+online actor-critic ambiguity :|: ```python run.py --agent 'online' --map_num 1 --action_space 'discrete'```
+pre-trained actor-critic ambiguity :|: ```python run.py --agent 'pre-trained' --map_num 1 --action_space 'discrete'```
+q-ambiguity :|: ```python run.py --agent 'q' map_num 1 --action_space 'discrete'```
+honest :|: python run.py --agent 'honest' map_num 1 --action_space 'discrete'
 
 To run the continuous action-space environment change 'discrete' to 'continuous'.
 
