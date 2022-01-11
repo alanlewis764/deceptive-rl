@@ -4,9 +4,14 @@ This code accompanies the paper - Deceptive Reinforcement Learning: A Policy-Bas
 The paper investigates a policy-based approach to deceptive reinforcement learning for privacy preservation in high-dimensional action-spaces. In reinforcement learning, the reward function defines the agent's objective. In adversarial scenarios, an agent may want to both maximise rewards and keep it's reward function private from observers. Recent approaches use the concept of entropy to select actions which are ambiguous over a set of possible reward functions. Despite promising results, they are inefficient to train, have poor state-space exploration properties, and are inapplicable in high-dimensional action-spaces. To resolve these issues, we combine entropy-based deception with an online actor-critic learning framework. We evaluate our model in discrete and continuous action-space, path-planning environments. Our model is more deceptive than an honest agent in both domains, extending entropy-based deception to high-dimensional action-spaces. The online learning framework leads to targeted exploration of the state-space. This improves the deceptive policy and reduces the number of environment interactions required to train the agent.
 
 ## Installation
-'''
+```
 # create clean conda environment
-'''
+conda create -n deceptiverl python=3.7
+conda activate deceptiverl
+
+# install dependencies
+git clone git@github.com:alanlewis764/DeceptiveRL.git
+```
 
 ## References
 - We used OpenAI's Spinningup as the starting point for our subagent model. See the code-base here: https://github.com/openai/spinningup
