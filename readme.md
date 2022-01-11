@@ -19,10 +19,10 @@ pip install -r requirements.txt
 To train the online actor-critic ambiguity and/or pre-trained actor-critic ambiguity use the following commands:
 Agent       | Command
 -----------:|:------------------------------------------------:
-online actor-critic ambiguity | ```python run.py --agent 'online' --map_num 1 --action_space 'discrete'```
-pre-trained actor-critic ambiguity | ```python run.py --agent 'pre-trained' --map_num 1 --action_space 'discrete'```
-q-ambiguity | ```python run.py --agent 'q' map_num 1 --action_space 'discrete'```
-honest | ```python run.py --agent 'honest' map_num 1 --action_space 'discrete'```
+online actor-critic ambiguity | ```python train.py --agent 'online' --map_num 1 --action_space 'discrete'```
+pre-trained actor-critic ambiguity | ```python train.py --agent 'pre-trained' --map_num 1 --action_space 'discrete'```
+
+This will store the pyTorch networks for each subagent in a directory called 'data'.
 
 ## Running the agent
 We have added some agents that have already been trained which you can run with the following commands:
