@@ -22,7 +22,9 @@ We have added some agents that have already been trained which you can run with 
 - online actor-critic ambiguity: ```python run_ambiguity.py --agent 'online' --space 'discrete'```
 - pre-trained actor-critic ambiguity: ```python run_ambiguity.py --agent 'pre-trained --space 'discrete'```
 - q-ambiguity: ```python run_ambiguity.py --agent 'q' --space 'discrete'```
+
 To run the continuous action-space environment change 'discrete' to 'continuous'.
+
 Note: we only included already trained agents files for the first map as an example.
 
 
