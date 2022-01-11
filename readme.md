@@ -6,9 +6,9 @@ The paper investigates a policy-based approach to deceptive reinforcement learni
 ## Installation
 
 ## References
-We used OpenAI's Spinningup as the starting point for our subagent model. See the code-base here: https://github.com/openai/spinningup
-We used Gym MiniGrid as a base to create our discrete action-space environment. See the code-base here: https://github.com/maximecb/gym-minigrid
-We used Gym Extensions as a base to create our continuous action-space environment. See the code-base here: https://github.com/Breakend/gym-extensions 
+- We used OpenAI's Spinningup as the starting point for our subagent model. See the code-base here: https://github.com/openai/spinningup
+- We used Gym MiniGrid as a base to create our discrete action-space environment. See the code-base here: https://github.com/maximecb/gym-minigrid
+- We used Gym Extensions as a base to create our continuous action-space environment. See the code-base here: https://github.com/Breakend/gym-extensions 
 
 ## Running
 
