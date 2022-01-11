@@ -12,7 +12,7 @@ MAPS_ROOT = 'gym_minigrid/maps/drl'
 
 def read_map(number, random_start=True, terminate_at_any_goal=True, goal_name='rg', discrete=True,
              max_episode_steps=49 ** 2, dilate=False, max_speed=1, destination_tolerance_range=0.5,
-             reward_type='value_table'):
+             reward_type='path_cost'):
     with open(FILE_PATH, 'r') as f:
         maps = f.readlines()
         map = maps[number]

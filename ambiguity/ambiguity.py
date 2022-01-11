@@ -340,7 +340,7 @@ class OnlineACAmbiguityAgent(ACAmbiguityAgent):
 
     def __init__(self, state_space, action_space, name, all_models, all_model_names, env,
                  real_goal_pruning_constant=0, q_gain_pruning_constant=0, num_epochs=100, start_steps=40000,
-                 max_ep_len=49 ** 2, steps_per_epoch=16000, pi_lr=1e-3, critic_lr=1e-3, tau=1, tau_decay=0.95,
+                 max_ep_len=49 ** 2, steps_per_epoch=16000, pi_lr=1e-3, critic_lr=1e-3, tau=1, tau_decay=0.99,
                  policy='softmax', experiment_name='online-ac-ambiguity-agent', adaptive_pruning_constant=-20,
                  pruning_decay=0.975, discount_rate=0.975, discrete=True, lr_decay=0.95, alpha=0.2,
                  batch_size=128, hidden_dim=64, num_test_eps=1) -> None:
@@ -348,6 +348,7 @@ class OnlineACAmbiguityAgent(ACAmbiguityAgent):
             self, state_space=state_space, action_space=action_space, name=name, all_models=all_models,
             real_goal_pruning_constant=real_goal_pruning_constant, q_gain_pruning_constant=q_gain_pruning_constant,
             experiment_name=experiment_name)
+        alpha = 0.2 if discrete else 0.01
         self.candidates = np.array([
             OnlineCandidate(probability=1.0 / self.num_subagents,
                             state_space=state_space,
