@@ -29,9 +29,9 @@ Note: we only included already trained agents files for the first map as an exam
 
 
 ## References
-- We used OpenAI's Spinningup as the starting point for our subagent model. See the code-base here: https://github.com/openai/spinningup
-- We used Gym MiniGrid as a base to create our discrete action-space environment. See the code-base here: https://github.com/maximecb/gym-minigrid
-- We used Gym Extensions as a base to create our continuous action-space environment. See the code-base here: https://github.com/Breakend/gym-extensions 
+- We used OpenAI's [Spinningup](https://github.com/openai/spinningup) as the starting point for our subagent model.
+- We used [Gym MiniGrid](https://github.com/maximecb/gym-minigrid) as a base to create our discrete action-space environment.
+- We used [Gym Extensions](https://github.com/Breakend/gym-extensions ) as a base to create our continuous action-space environment.
 
 ## Running
 
