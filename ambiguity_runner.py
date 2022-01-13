@@ -260,7 +260,6 @@ def pretrained_agent_vs_training_cost(map_number, discrete=True, reward_type=Non
 
 
 def get_value_iteration_path(map_name, map_number, goal_name):
-    # TODO: move this over to the intention recognition file; create intention recognition from environment details
     """
     Used to instantiate the intention recognition agent
     """
@@ -277,10 +276,10 @@ def test_interval(map_number, agent_type='Pretrained', model_config='interval_sa
     intention_recognition = IntentionRecognitionFactory.create(discrete=discrete,
                                                                state_space=env.observation_space,
                                                                action_space=env.action_space,
-                                                               all_models=[get_value_iteration_path(map_name=map_name,
-                                                                                                    map_number=map_number,
-                                                                                                    goal_name=name)
-                                                                           for name in agent_names],
+                                                               # all_models=[get_value_iteration_path(map_name=map_name,
+                                                               #                                      map_number=map_number,
+                                                               #                                      goal_name=name)
+                                                               #             for name in agent_names],
                                                                all_model_names=agent_names,
                                                                start_state=start_state,
                                                                goals=goals,

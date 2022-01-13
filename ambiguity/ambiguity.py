@@ -21,9 +21,7 @@ from subagent.user_config import DEFAULT_DATA_DIR
 def get_sac_path(agent_type, map_name='empty1', agent_name='rg', seed='42', discrete=True, state_visitation=False,
                  decay_param=None, pruning_constant=None, tau_decay=None, tau_constant=None):
     # find correct directory
-    if map_name == 'test':
-        folder = f'{DEFAULT_DATA_DIR}/test-{agent_name}/test-{agent_name}_s{seed}/'
-    elif agent_type == AmbiguityTypes.SAC:
+    if agent_type == AmbiguityTypes.SAC:
         if discrete:
             folder = f'{DEFAULT_DATA_DIR}/pretrained-sac-{map_name}-{agent_name}/pretrained-sac-{map_name}-{agent_name}_s{seed}/'
         else:

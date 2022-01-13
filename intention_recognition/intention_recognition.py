@@ -8,19 +8,26 @@ import scipy.stats
 from numpy.linalg import norm
 
 # local stuff
-from gym_minigrid.env_reader import read_map_as_visibility_graph
+from gym_minigrid.env_reader import read_map_as_visibility_graph, read_name
 from subagent.algos.sac.candidate import QLearningCandidate, Observation
 from subagent.algos.sac.q_table_agent import QAgent
 
 
 class IntentionRecognitionBase(ABC):
-    def __init__(self, num_candidates, all_model_names) -> None:
+    def __init__(self, map_num, num_candidates, all_model_names, value_table_path='data/value_iteration') -> None:
         super().__init__()
         self.num_candidates = num_candidates
         self.all_model_names = all_model_names
         self.candidate_probabilities_dict = {goal: [] for goal in self.all_model_names}
         self.current_probabilities_dict = defaultdict(float)
         self.entropies = []
+        self.value_table_path = value_table_path
+
+    def get_value_table_fp(self, map_name, map_number, goal_name):
+        """
+        Used to instantiate the intention recognition agent
+        """
+        return f'{self.value_table_path}/{map_name}{map_number}-{goal_name}.npy'
 
     def add_probabilities(self, probabilities):
         # deceptive_values maintain the same order as the candidate list
@@ -59,15 +66,19 @@ class IntentionRecognitionBase(ABC):
 class DiscreteIntentionRecognition(IntentionRecognitionBase):
     def __init__(
             self,
+            map_num,
             state_space,
             action_space,
-            all_models,
             all_model_names,
             tau=1.0,
             q_difference_queue_length=5000
     ) -> None:
-        super().__init__(num_candidates=len(all_models),
+        super().__init__(map_num=map_num,
+                         num_candidates=len(all_model_names),
                          all_model_names=all_model_names)
+        map_name = read_name(number=map_num, discrete=True)
+        value_table_file_paths = [self.get_value_table_fp(map_name=map_name, map_number=map_num, goal_name=name)
+                                  for name in all_model_names]
         self.candidates = np.array(
             [QLearningCandidate(subagent=QAgent(state_space=state_space,
                                                 action_space=action_space,
@@ -77,7 +88,8 @@ class DiscreteIntentionRecognition(IntentionRecognitionBase):
                                                 file_path=f),
                                 probability=1.0 / self.num_candidates,
                                 q_difference_queue_length=q_difference_queue_length,
-                                name=name) for f, name in zip(all_models, all_model_names)], dtype=QLearningCandidate
+                                name=name) for f, name in zip(value_table_file_paths, all_model_names)],
+            dtype=QLearningCandidate
         )
         self.tau = tau
         self.observation_sequence = []
@@ -148,7 +160,8 @@ class ContinuousIntentionRecognition(IntentionRecognitionBase):
         """
         all_model_names = [goal[2] for goal in goals]
         super().__init__(num_candidates=len(goals),
-                         all_model_names=all_model_names)
+                         all_model_names=all_model_names,
+                         map_num=map_number)
         self.goals = goals
         self.start_state = start_state
         self.map_number = map_number
@@ -200,11 +213,11 @@ class ContinuousIntentionRecognition(IntentionRecognitionBase):
 
 class IntentionRecognitionFactory:
     @staticmethod
-    def create(discrete, state_space, action_space, all_models, all_model_names, start_state, goals, map_num):
+    def create(discrete, state_space, action_space, all_model_names, start_state, goals, map_num):
         if discrete:
             return DiscreteIntentionRecognition(state_space=state_space,
                                                 action_space=action_space,
-                                                all_models=all_models,
+                                                map_num=map_num,
                                                 all_model_names=all_model_names)
         else:
             return ContinuousIntentionRecognition(start_state=start_state,

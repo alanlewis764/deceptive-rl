@@ -1,6 +1,5 @@
 import argparse
 import multiprocessing as mp
-
 import numpy as np
 import torch
 
@@ -71,9 +70,9 @@ def train_pretrained_ambiguity(map_num, discrete=True):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    parser.add_argument('--agent', type=str, default='online')
     parser.add_argument('--map_num', type=int, default=1)
     parser.add_argument('--action_space', type=str, default='discrete')
-    parser.add_argument('--agent', type=str, default='online')
     parser.add_argument('--seed', type=int, default=42)
     args = parser.parse_args()
 
@@ -88,7 +87,6 @@ if __name__ == "__main__":
     if agent == 'online':
         train_online_ambiguity(map_num=map_num, discrete=discrete)
     elif agent == 'pre-trained':
-        pass
         train_pretrained_ambiguity(map_num=map_num, discrete=discrete)
     else:
         raise ValueError("Not a valid ambiguity agent")

@@ -60,9 +60,8 @@ def read_map(number, random_start=True, terminate_at_any_goal=True, goal_name='r
                                                            reward_type=reward_type), '2DContinuousNav'
 
 
-def read_q_table(map_number, map_name, goal_name='rg', show=False):
-    q_table = np.load(f'/Users/alanlewis/PycharmProjects/DeceptiveReinforcementLearning/model_storage/value_iteration/{map_name}{map_number}-{goal_name}.npy')
-    # q_table = np.load(f'/data/projects/punim1607/spinningup/value_iteration/{map_name}{map_number}-{goal_name}.npy')
+def read_q_table(map_number, map_name, goal_name='rg'):
+    q_table = np.load(f'/data/value_iteration/{map_name}{map_number}-{goal_name}.npy')
     grid_size = read_grid_size(number=map_number)[0]
     value_table = [[0 for _ in range(grid_size + 1)] for _ in range(grid_size + 1)]
     for y in range(grid_size):
