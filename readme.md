@@ -50,4 +50,4 @@ Discrete    | ![Alt Text](/assets/honest_discrete_map_16.gif)  | ![Alt Text](/as
 Continuous  | ![Alt Text](/assets/honest_continuous_map_3.gif) | ![Alt Text](/assets/ambiguity_continuous_map_3.gif)
 
 ## Notice
-I am still currently in the process of cleaning up some of the code and merging in changes from private repositories for publication. If anything appears to be strange, please let me know.
+I am still currently in the process of cleaning up some of the code and merging in changes from private repositories. If anything appears to be strange, please let me know.
