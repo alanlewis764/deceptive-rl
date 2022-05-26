@@ -1,7 +1,7 @@
 # deceptive-rl
-This code accompanies the paper - Deceptive Reinforcement Learning: A Policy-Based Approach for High-Dimensional Action-Spaces. 
+This code accompanies the paper - Deceptive Reinforcement Learning in Model-Free domains. 
 
-The paper investigates a policy-based approach to deceptive reinforcement learning for privacy preservation in high-dimensional action-spaces. In reinforcement learning, the reward function defines the agent's objective. In adversarial scenarios, an agent may want to both maximise rewards and keep it's reward function private from observers. Recent approaches use the concept of entropy to select actions which are ambiguous over a set of possible reward functions. Despite promising results, they are inefficient to train, have poor state-space exploration properties, and are inapplicable in high-dimensional action-spaces. To resolve these issues, we combine entropy-based deception with an online actor-critic learning framework. We evaluate our model in discrete and continuous action-space, path-planning environments. Our model is more deceptive than an honest agent in both domains, extending entropy-based deception to high-dimensional action-spaces. The online learning framework leads to targeted exploration of the state-space. This improves the deceptive policy and reduces the number of environment interactions required to train the agent.
+This paper investigates the problem of deceptive reinforcement learning for privacy preservation in model-free and continuous action space domains. In reinforcement learning, the reward function defines the agent's objective. In adversarial scenarios, an agent may need to both maximise rewards and keep its reward function private from observers. Recently, the \emph{ambiguity model} (AM) selects actions that are ambiguous over a set of possible reward functions, via pre-trained $Q$-functions. Despite promising results, AM is inefficient to train, ineffective in model-free domains due to misdirected state space exploration, and inapplicable in continuous action spaces. We propose the \emph{deceptive exploration ambiguity model} (DEAM), which learns using the deceptive policy during training, leading to targeted exploration of the state space. DEAM is also applicable in continuous action spaces. We evaluate DEAM in discrete and continuous action-space path planning environments. DEAM achieves similar performance to an optimal version of AM and outperforms a model-free version of AM in terms of path cost, deceptiveness and training efficiency. These results extend to the continuous domain.
 
 ## Installation
 ```
@@ -10,17 +10,16 @@ conda create -n deceptiverl python=3.7
 conda activate deceptiverl
 
 # install dependencies
-git clone git@github.com:alanlewis764/deceptive-rl.git
 cd deceptive-rl
 pip install -r requirements.txt
 ```
 
 ## Training the agent
-To train the online actor-critic ambiguity and/or pre-trained actor-critic ambiguity use the following commands:
+To train ACA and/or pre-trained ACA use the following commands:
 Agent       | Command
 -----------:|:------------------------------------------------:
-online actor-critic ambiguity | ```python train.py --agent 'online' --map_num 1 --action_space 'discrete'```
-pre-trained actor-critic ambiguity | ```python train.py --agent 'pre-trained' --map_num 1 --action_space 'discrete'```
+DEAM | ```python train.py --agent 'ACA' --map_num 1 --action_space 'discrete'```
+AM | ```python train.py --agent 'pre-trained-ACA' --map_num 1 --action_space 'discrete'```
 
 This will store the pyTorch networks for each subagent in a directory called 'data'.
 
@@ -28,8 +27,8 @@ This will store the pyTorch networks for each subagent in a directory called 'da
 We have added some agents that have already been trained which you can run with the following commands:
 Agent       | Command
 -----------:|:------------------------------------------------:
-online actor-critic ambiguity | ```python run.py --agent 'online' --map_num 1 --action_space 'discrete'```
-pre-trained actor-critic ambiguity | ```python run.py --agent 'pre-trained' --map_num 1 --action_space 'discrete'```
+DEAM | ```python run.py --agent 'ACA' --map_num 1 --action_space 'discrete'```
+AM | ```python run.py --agent 'pre-trained-ACA' --map_num 1 --action_space 'discrete'```
 
 To run the continuous action-space environment change 'discrete' to 'continuous'.
 
@@ -44,10 +43,10 @@ Note: we only included already trained agents files for the first map as an exam
 ## Running
 
 ## Example agent behaviour gifs
-Environment |Honest Agent                                      | Online Actor-Critic Ambiguity Agent
+Environment |Honest Agent                                      | DEAM
 -----------:|:------------------------------------------------:|:----------------------------------------------:
 Discrete    | ![Alt Text](/assets/honest_discrete_map_16.gif)  | ![Alt Text](/assets/ambiguity_discrete_map_16.gif)
 Continuous  | ![Alt Text](/assets/honest_continuous_map_3.gif) | ![Alt Text](/assets/ambiguity_continuous_map_3.gif)
 
 ## Notice
-I am still currently in the process of cleaning up some of the code and merging in changes from private repositories. If anything appears to be strange, please let me know.
+I am still currently in the process of cleaning up some of the code and merging in changes from private repositories for publication. If anything appears to be strange, please let me know.
